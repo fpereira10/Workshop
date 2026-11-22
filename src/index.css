@@ -1,0 +1,219 @@
+@import "tailwindcss";
+@import "./styles/tokens.css";
+
+/* ── Bounce design tokens ────────────────────────────────────────────────────────────────── */
+
+@theme {
+  --breakpoint-md: 800px;
+  --breakpoint-lg: 1100px;
+
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, monospace;
+
+  --radius-card: 28px;
+  --radius-sheet: 32px;
+}
+
+/* inline: as utilities leem as variáveis da energia no próprio elemento */
+@theme inline {
+  --color-ink: var(--bn-ink);
+  --color-ink-inverse: var(--bn-ink-inverse);
+  --color-cta: var(--bn-cta);
+  --color-cta-ink: var(--bn-cta-ink);
+  --color-ready: var(--bn-ready);
+  --color-rec: #d9542b;
+}
+
+/* Animáveis: o texto acompanha o crossfade do fundo da energia */
+@property --bn-ink {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #ffffff;
+}
+@property --bn-ink-inverse {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #1a1630;
+}
+
+:root {
+  --bn-bg: #0d0f10;
+  --bn-blur: 24px;
+  color-scheme: dark;
+}
+
+/* Tokens gerados (primitivos + semânticos). O texto segue a tinta da energia ativa. */
+:root {
+  --bn-color-text-primary: var(--bn-ink);
+  --bn-color-text-inverse: var(--bn-ink-inverse);
+}
+
+/* Aliases do código atual → tokens semânticos (kebab-case) */
+[data-tone="dark"],
+[data-tone="light"] {
+  --bn-glass: var(--bn-color-glass);
+  --bn-glass-border: var(--bn-color-glass-border);
+  --bn-glass-soft: var(--bn-color-glass-soft);
+  --bn-glass-soft-border: var(--bn-color-glass-soft-border);
+  --bn-glass-strong: var(--bn-color-glass-strong);
+  --bn-glass-strong-border: var(--bn-color-glass-strong-border);
+  --bn-ready: var(--bn-color-status-ready);
+  --bn-sheet: var(--bn-color-sheet);
+  --bn-overlay: var(--bn-color-overlay);
+  --bn-cta-ink: var(--bn-color-cta-text);
+}
+[data-tone="dark"] { --bn-cta: var(--bn-color-cta-bg); }
+/* Energias luminosas: o CTA usa a tinta da própria energia */
+[data-tone="light"] { --bn-cta: var(--bn-ink); }
+
+html,
+body {
+  background: var(--bn-bg);
+}
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+button:not(:disabled) {
+  cursor: pointer;
+}
+:focus-visible {
+  outline: 2px solid var(--bn-ink);
+  outline-offset: 2px;
+}
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+::placeholder {
+  color: color-mix(in srgb, var(--bn-ink) 50%, transparent);
+}
+
+/* ── Utilities ───────────────────────────────────────────────────────────────────── */
+
+@utility tone-root {
+  transition:
+    --bn-ink 700ms ease,
+    --bn-ink-inverse 700ms ease;
+}
+
+@utility glass {
+  background: var(--bn-glass);
+  border: 1px solid var(--bn-glass-border);
+  -webkit-backdrop-filter: blur(var(--bn-blur));
+  backdrop-filter: blur(var(--bn-blur));
+}
+@utility glass-soft {
+  background: var(--bn-glass-soft);
+  border: 1px solid var(--bn-glass-soft-border);
+  -webkit-backdrop-filter: blur(var(--bn-blur));
+  backdrop-filter: blur(var(--bn-blur));
+}
+@utility glass-strong {
+  background: var(--bn-glass-strong);
+  border: 1px solid var(--bn-glass-strong-border);
+  -webkit-backdrop-filter: blur(var(--bn-blur));
+  backdrop-filter: blur(var(--bn-blur));
+}
+@utility sheet-surface {
+  background: var(--bn-sheet);
+  border: 1px solid var(--bn-glass-border);
+  -webkit-backdrop-filter: blur(36px) saturate(140%);
+  backdrop-filter: blur(36px) saturate(140%);
+}
+
+/* Kicker mono: HOJE, PRÓXIMO PASSO, 122 BPM · LÁ MENOR */
+@utility kicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--bn-ink) 60%, transparent);
+}
+@utility kicker-strong {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--bn-ink) 72%, transparent);
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ── Motion ───────────────────────────────────────────────────────────────────── */
+
+@keyframes bn-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes bn-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+@keyframes bn-sheet-in {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+@keyframes bn-sheet-out {
+  from { transform: translateY(0); }
+  to { transform: translateY(100%); }
+}
+@keyframes bn-modal-in {
+  from { opacity: 0; transform: translateY(16px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes bn-modal-out {
+  from { opacity: 1; transform: none; }
+  to { opacity: 0; transform: translateY(12px) scale(0.98); }
+}
+/* Só opacidade: transform no <main> quebraria as barras fixas */
+@keyframes bn-view-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes bn-toast-in {
+  from { opacity: 0; transform: translate(-50%, -12px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+@keyframes bn-pulse {
+  0% { transform: scale(1); opacity: 0.55; }
+  100% { transform: scale(1.55); opacity: 0; }
+}
+
+.anim-fade-in { animation: bn-fade-in 240ms ease both; }
+.anim-fade-out { animation: bn-fade-out 220ms ease both; }
+.anim-sheet-in { animation: bn-sheet-in 340ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.anim-sheet-out { animation: bn-sheet-out 220ms cubic-bezier(0.4, 0, 1, 1) both; }
+@media (min-width: 800px) {
+  .anim-sheet-in { animation: bn-modal-in 280ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .anim-sheet-out { animation: bn-modal-out 200ms ease both; }
+}
+.anim-view-in { animation: bn-view-in 380ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.anim-toast-in { animation: bn-toast-in 320ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.anim-pulse { animation: bn-pulse 1.4s ease-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+}
