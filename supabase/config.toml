@@ -1,0 +1,9 @@
+# Configuração mínima da Supabase CLI (supabase start / db reset).
+project_id = "bounce"
+
+[db]
+major_version = 15
+
+[auth]
+site_url = "http://localhost:5173"
+additional_redirect_urls = ["http://localhost:5173"]
