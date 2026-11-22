@@ -1,0 +1,18 @@
+{
+  "color-text-primary": {"type":"color","value":"{color-amber-950}"},
+  "color-text-inverse": {"type":"color","value":"{color-sand-100}"},
+  "color-glass-soft": {"type":"color","value":"rgba({color-white}, 0.3)"},
+  "color-glass": {"type":"color","value":"rgba({color-white}, 0.38)"},
+  "color-glass-strong": {"type":"color","value":"rgba({color-white}, 0.55)"},
+  "color-glass-soft-border": {"type":"color","value":"rgba({color-white}, 0.55)"},
+  "color-glass-border": {"type":"color","value":"rgba({color-white}, 0.65)"},
+  "color-glass-strong-border": {"type":"color","value":"rgba({color-white}, 0.75)"},
+  "color-sheet": {"type":"color","value":"rgba({color-sand-50}, 0.66)"},
+  "color-overlay": {"type":"color","value":"rgba({color-amber-950}, 0.22)"},
+  "color-cta-bg": {"type":"color","value":"{color-amber-950}"},
+  "color-cta-text": {"type":"color","value":"{color-sand-50}"},
+  "color-status-ready": {"type":"color","value":"{color-mint-200}"},
+  "color-focus-ring": {"type":"color","value":"{color-amber-950}"},
+  "color-text-secondary": {"type":"color","value":"rgba({color-text-primary}, 0.72)"},
+  "color-text-muted": {"type":"color","value":"rgba({color-text-primary}, 0.5)"}
+}
