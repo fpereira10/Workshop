@@ -11,7 +11,7 @@
   "color-overlay": {"type":"color","value":"rgba({color-amber-950}, 0.22)"},
   "color-cta-bg": {"type":"color","value":"{color-amber-950}"},
   "color-cta-text": {"type":"color","value":"{color-sand-50}"},
-  "color-status-ready": {"type":"color","value":"{color-mint-200}"},
+  "color-status-ready": {"type":"color","value":"{color-mint-700}"},
   "color-focus-ring": {"type":"color","value":"{color-amber-950}"},
   "color-text-secondary": {"type":"color","value":"rgba({color-text-primary}, 0.72)"},
   "color-text-muted": {"type":"color","value":"rgba({color-text-primary}, 0.5)"}
