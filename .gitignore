@@ -1,0 +1,16 @@
+# dependências e builds
+node_modules
+dist
+storybook-static
+
+# segredos: nunca versionar (só o .env.example, com placeholders)
+.env
+.env.*
+!.env.example
+
+# máquina local
+.DS_Store
+*.log
+supabase/.temp
+.claude/launch.json
+.claude/settings.local.json
